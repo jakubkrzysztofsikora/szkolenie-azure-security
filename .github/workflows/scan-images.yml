@@ -10,7 +10,7 @@ jobs:
       - name: Build image
         run: |
           echo "github.sha=$GITHUB_SHA"
-          docker build -t aksszkolenie.azurecr.io/scandemo:${{ github.sha }} .
+          docker build -t aksszkolenie.azurecr.io/scandemo:${{ github.sha }} . -f Dockerfile
 
       - uses: Azure/container-scan@v0
         name: Scan image for vulnerabilities
