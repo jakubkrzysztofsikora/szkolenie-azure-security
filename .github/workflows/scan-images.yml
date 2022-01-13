@@ -1,10 +1,5 @@
 name: Push & scan acr
 
-# inspired by
-# https://github.com/connect4app/connect4/issues/new?title=Meteor%20Cypress%20GH%20Action&projects=loading...&labels=enhancement&body=%23%23%23%20Story%3A%0A%0AAs%20a%20User%2FAdmin%2FDeveloper%0AI%20want%20%3Csome%20software%20feature%3E%0ASo%20that%20%3Csome%20business%20value%3E%0A%0A%23%23%23%20Requirements%3A%0A%0A-%20list%20them%20here%0A%0A%23%23%23%20Tasks%3A%0A%0A-%20%5B%20%5D%20%0A-%20%5B%20%5D%20%0A-%20%5B%20%5D%20%0A%0A%0AReported%20from%3A%20https%3A%2F%2Fgitter.im%2Fcypress-io%2Fcypress%3Fat%3D5ffb67da03529b296be078e6%0A%0A
-
-# for more on this : https://frontside.com/blog/2020-05-26-github-actions-pull_request/
-#on: [pull_request]
 on: [push]
 
 jobs:
