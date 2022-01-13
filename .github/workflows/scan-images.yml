@@ -7,23 +7,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: |
-      docker build -t aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
+      - name: Build image
+        run: |
+          echo "github.sha=$GITHUB_SHA"
+          docker build -t aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
 
-    - uses: Azure/container-scan@v0
-      name: Scan image for vulnerabilities
-      id: container-scan
-      continue-on-error: true
-      with:
-        image-name: aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
+      - uses: Azure/container-scan@v0
+        name: Scan image for vulnerabilities
+        id: container-scan
+        continue-on-error: true
+        with:
+          image-name: aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
 
-    - name: Push Docker image - aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
-      run: |
-      docker push aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
+      - name: Push Docker image - aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
+        run: |
+          docker push aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
 
-    - name: Post logs to appinsights
-      uses: Azure/publish-security-assessments@v0
-      with:
-        scan-results-path: ${{ steps.container-scan.outputs.scan-report-path }}
-        connection-string: ${{ secrets.AZ_APPINSIGHTS_CONNECTION_STRING }}
-        subscription-token: ${{ secrets.AZ_SUBSCRIPTION_TOKEN }}
+      - name: Post logs to appinsights
+        uses: Azure/publish-security-assessments@v0
+        with:
+          scan-results-path: ${{ steps.container-scan.outputs.scan-report-path }}
+          connection-string: ${{ secrets.AZ_APPINSIGHTS_CONNECTION_STRING }}
+          subscription-token: ${{ secrets.AZ_SUBSCRIPTION_TOKEN }}
