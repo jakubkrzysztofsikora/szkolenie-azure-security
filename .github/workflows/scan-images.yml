@@ -3,14 +3,14 @@ name: Push & scan acr
 on: [push]
 
 jobs:
-  e2e:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Build image
         run: |
           echo "github.sha=$GITHUB_SHA"
-          docker build -t aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
+          docker build -t aksszkolenie.azurecr.io/scandemo:${{ github.sha }} .
 
       - uses: Azure/container-scan@v0
         name: Scan image for vulnerabilities
