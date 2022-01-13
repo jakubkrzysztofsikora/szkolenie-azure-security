@@ -8,7 +8,6 @@ jobs:
 
     steps:
     - run: |
-      echo "github.sha=$GITHUB_SHA"
       docker build -t aksszkolenie.azurecr.io/scandemo:${{ github.sha }}
 
     - uses: Azure/container-scan@v0
